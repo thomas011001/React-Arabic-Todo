@@ -24,7 +24,7 @@ function App(): ReactElement {
 
   const [todos, dispatch] = useReducer(
     reducer,
-    JSON.parse(localStorage.getItem("todos"))
+    JSON.parse(localStorage.getItem("todos") || "[]")
   );
 
   const [tab, setTab] = useState<"all" | "done" | "undone">("all");
@@ -59,7 +59,7 @@ function App(): ReactElement {
               : unDoneTodo
             ).map((todo) => {
               return (
-                <Todo key={todo.id} dispatch={dispatch} todo={todo}>
+                <Todo key={todo.id.toString()} dispatch={dispatch} todo={todo}>
                   <TodoTitle>{todo.title}</TodoTitle>
                   {todo.description ? (
                     <TodoDescription>{todo.description}</TodoDescription>

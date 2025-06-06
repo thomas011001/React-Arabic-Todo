@@ -1,18 +1,14 @@
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import type { TodoAction, TodoType } from "@/types/Todo.type";
+import type { TodoAction } from "@/types/Todo.type";
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "sonner";
 
-function AddingTodo({
-  dispatch,
-}: {
-  dispatch: (action: TodoAction) => TodoType[];
-}) {
+function AddingTodo({ dispatch }: { dispatch: (action: TodoAction) => void }) {
   const [title, setTitle] = useState("");
 
-  const handleAdding = (e: Event) => {
+  const handleAdding = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setTitle("");
     dispatch({

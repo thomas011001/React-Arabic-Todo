@@ -56,7 +56,7 @@ function Todo({
 }: {
   children: ReactNode;
   todo: TodoType;
-  dispatch: (action: TodoAction) => TodoType[];
+  dispatch: (action: TodoAction) => void;
 }) {
   const handleComplete = () => {
     dispatch({ type: "check", payload: { id: todo.id } });
@@ -68,7 +68,7 @@ function Todo({
     toast.success("تم حذف المهمة");
   };
 
-  const handleEdit = (e: Event) => {
+  const handleEdit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch({
       type: "edit",
